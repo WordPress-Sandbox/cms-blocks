@@ -2,7 +2,7 @@
 
 A plugin for WordPress to create reusable content to insert in posts, 
 pages and other areas of the site.
-The plugin appears in the WordPress admin under the 'Content Blocks' 
+The plugin appears in the WordPress admin under the 'CMS Blocks' 
 menu. The content created in this area can be inserted using a shortcode, `[cms-block id="1"]`, or with the widget.
 
 The shortcode accepts parameters for:
