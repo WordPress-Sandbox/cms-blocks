@@ -218,7 +218,7 @@ class CMS_Blocks_Admin_Metaboxes {
     $metabox_fields = $this->get_metabox_fields();
 
     // verify nonce
-    if ( !isset($_POST['cms_blocks_metabox_nonce']) || !wp_verify_nonce( $_POST['static_blocks_metabox_nonce'], basename(__FILE__) ) ) {
+    if ( !isset($_POST['cms_blocks_metabox_nonce']) || !wp_verify_nonce( $_POST['cms_blocks_metabox_nonce'], basename(__FILE__) ) ) {
       return $post_id;
     }
 
