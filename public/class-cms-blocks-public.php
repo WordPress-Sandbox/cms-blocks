@@ -58,7 +58,6 @@ class CMS_Blocks_Public {
     $default = array(
       'id'          => false,
       'post_type'   => 'cms_block',
-      'class'       => '',
       'title'       => '',
       'showtitle'   => false,
       'titletag'    => 'h3',
@@ -93,27 +92,18 @@ class CMS_Blocks_Public {
       $content = apply_filters('cms_content', $content);
 
       // NOTE: This entire section could be setup as a filter.
-      if ( get_post_meta($id, 'content_filters', true) == 'all' ) {
-        // Apply all WP content filters, including those added by plugins.
-        // This can still have autop turned off with our internal filter.
-        $GLOBALS['wpautop_post'] = $page_data; // not default $post so global variable used by wpautop_disable(), if function exists
-        $content = apply_filters('the_content', $content);
-      } else {
-        // Only apply default WP filters. This is the safe way to add basic formatting without any plugin injected filters
-        $content = wptexturize($content);
-        $content = convert_smilies($content);
-        $content = convert_chars($content);
-        if ( get_post_meta($id, 'wpautop', true) == 'on' ) { // (!wpautop_disable($id)) {
-          $content = wpautop($content); // Add paragraph tags.
-        }
-        $content = shortcode_unautop($content);
-        $content = prepend_attachment($content);
-        $style = apply_filters( 'get_vc_row_css', $content );
-        $content = do_shortcode($content);
+      // Apply default WP filters. This is the safe way to add basic formatting without any plugin injected filters
+      $content = wptexturize($content);
+      $content = convert_smilies($content);
+      $content = convert_chars($content);
+      if ( get_post_meta($id, 'wpautop', true) == 'on' ) { // (!wpautop_disable($id)) {
+        $content = wpautop($content); // Add paragraph tags.
       }
-      $class = (!empty($args->class)) ? trim($args->class) : '';
+      $content = shortcode_unautop($content);
+      $content = prepend_attachment($content);
+      $style = apply_filters( 'get_vc_row_css', $content );
+      $content = do_shortcode($content);
       $content = apply_filters('cms_content_vc', $content, $id);
-      $text = '<div id="block-' . $id . '" class="block'. $class .'"'. $style. '>'. $content .'</div>';
 
       // The title
       if ( ! empty($args->title) ) {
@@ -124,8 +114,28 @@ class CMS_Blocks_Public {
         $showtitle = $args->showtitle;
       }
 
-      if ($showtitle) $title =  '<'. $args->titletag .' class="block-title">'. $page_data->post_title .'</'. $args->titletag .'>';
-      if ($showtitle) $text = '<div id="block-' . $id . '" class="block '. $class .'"'. $style. '>'. $title . $content .'</div>';
+      // The tag
+      if ( get_post_meta($id, 'tag', true) !== null ) {
+        $tag = get_post_meta($id, 'tag', true);
+
+        if ( get_post_meta($id, 'tag', true) == 'p' ) {
+          $showtitle = false;
+        }
+      } else {
+        $tag = 'div';
+      }
+
+      // The class
+      if ( get_post_meta($id, 'class', true) !== null ) {
+        $class = ' class="' . get_post_meta($id, 'class', true) . '"';
+      } else {
+        $class = '';
+      }
+
+      $text = '<' . $tag . ' ' . $class . $style . '>' . $content . '</' . $tag . '><!-- cms-block id-' . $id . ' -->';
+
+      if ($showtitle) $title = '<'. $args->titletag . '>' . $page_data->post_title . '</'. $args->titletag .'>';
+      if ($showtitle) $text = '<' . $tag . ' ' . $class . $style . '>'. $title . $content . '</' . $tag . '><!-- cms-block id-' . $id . ' -->';
 
       $content = $text;
 
@@ -142,10 +152,6 @@ class CMS_Blocks_Public {
   }
 
   public function cms_block_shortcode( $args=array() ) {
-    if ( ! isset($args['class']) ) {
-      $args['class'] = '';
-    }
-    $args['class'] .= '';
     return CMS_Blocks_Public::get_cms_content($args);
   }
 

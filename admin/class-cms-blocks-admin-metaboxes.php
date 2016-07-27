@@ -59,35 +59,6 @@ class CMS_Blocks_Admin_Metaboxes {
 
   }
 
-  public function metabox_field_args() {
-    return array(
-      'fields'    => array(
-        array(
-           'name' => __( 'Content Filters' ),
-           'desc' => __( 'Apply all WP content filters? This will include plugin added filters.' ),
-           'id'   => 'content_filters',
-           'type' => 'radio',
-           'std'  => '',
-           'options' => array(
-            'default' => __( 'Defaults (recommended)' ),
-            'all'     => __( 'All Content Filters' )
-          )
-        ),
-        array(
-           'name' => __( 'Auto Paragraphs' ),
-           'desc' => __( 'Add &lt;p&gt; and &lt;br&gt; tags automatically.<br>(disabling may fix layout issues)' ),
-           'id'   => 'wpautop',
-           'type' => 'radio',
-           'std'  => '',
-           'options' => array(
-            'on'  => __( 'On' ),
-            'off' => __( 'Off' )
-          )
-        )
-      )
-    );
-  }
-
   // Add metabox to CMS Block edit screen
   public function add_metaboxes() {
     $metabox_args =  array(
@@ -116,29 +87,30 @@ class CMS_Blocks_Admin_Metaboxes {
     return array(
       'fields'    => array(
         array(
-           'name' => __( 'Class' ),
-           'desc' => __( 'Add a styling class to the block.' ),
-           'id'   => 'class',
-           'type' => 'text'
-        ),
-        array(
-           'name' => __( 'Content Filters' ),
-           'desc' => __( 'Apply all WP content filters? This will include plugin added filters.' ),
-           'id'   => 'content_filters',
-           'type' => 'radio',
-           'std'  => '',
-           'options' => array(
-            'default' => __( 'Defaults (recommended)' ),
-            'all'     => __( 'All Content Filters' )
+          'name' => __( 'Tag' ),
+          'desc' => __( 'Select HTML tag to wrap block.' ),
+          'id'   => 'tag',
+          'type' => 'select',
+          'options' => array(
+            'div'     => __( 'div' ),
+            'section' => __( 'section' ),
+            'article' => __( 'article' ),
+            'p'       => __( 'p' ),
+            'span'    => __( 'span' ),
           )
         ),
         array(
-           'name' => __( 'Auto Paragraphs' ),
-           'desc' => __( 'Add &lt;p&gt; and &lt;br&gt; tags automatically.<br>(disabling may fix layout issues)' ),
-           'id'   => 'wpautop',
-           'type' => 'radio',
-           'std'  => '',
-           'options' => array(
+          'name' => __( 'Class' ),
+          'desc' => __( 'Add a styling classes to the block.<br>(separate classes with a space)' ),
+          'id'   => 'class',
+          'type' => 'text'
+        ),
+        array(
+          'name' => __( 'Auto Paragraphs' ),
+          'desc' => __( 'Add &lt;p&gt; and &lt;br&gt; tags automatically.<br>(disabling may fix layout issues)' ),
+          'id'   => 'wpautop',
+          'type' => 'radio',
+          'options' => array(
             'on'  => __( 'On' ),
             'off' => __( 'Off' )
           )
@@ -167,12 +139,34 @@ class CMS_Blocks_Admin_Metaboxes {
         // If text array
         case 'text':
 
-          echo '<div class="metaField_field_wrapper metaField_field_'.$field['id'].'" style="'.$style.'">',
-             '<p><label for="'.$field['id'].'"><strong>'.$field['name'].'</strong></label></p>';
+          echo '<div class="metaField_field_wrapper metaField_field_' . $field['id'] . '" style="' . $style . '">',
+             '<p><label for="' . $field['id'] . '"><strong>' . $field['name'] . '</strong></label></p>';
 
-          echo '<input class="metaField_text" type="text" name="'.$field['id'].'" value="'.$meta.'">';
+          echo '<input class="metaField_text" type="text" name="' . $field['id'] . '" value="' . $meta . '">';
 
-          echo '<p class="metaField_caption" style="color:#999">'.$field['desc'].'</p>',
+          echo '<p class="metaField_caption" style="color:#999">' . $field['desc'] . '</p>',
+            '</div>';
+
+        break;
+
+        // If select array
+        case 'select':
+
+          echo '<div class="metaField_field_wrapper metaField_field_' . $field['id'] . '" style="' . $style . '">',
+             '<p><label for="' . $field['id'] . '"><strong>' . $field['name'] . '</strong></label></p>';
+
+          echo '<select class="metaField_text" name="' . $field['id'] . '">';
+
+          $count = 0;
+          foreach ($field['options'] as $key => $label) {
+            $checked = ($meta == $key || (!$meta && !$count)) ? 'selected' : '';
+            echo '<option name="' . $field['id'] . '" value="' . $key . '" ' . $checked . '>' . $label . '</option>';
+            $count++;
+          }
+
+          echo '</select>';
+
+          echo '<p class="metaField_caption" style="color:#999">' . $field['desc'] . '</p>',
             '</div>';
 
         break;
@@ -186,11 +180,11 @@ class CMS_Blocks_Admin_Metaboxes {
           $count = 0;
           foreach ($field['options'] as $key => $label) {
             $checked = ($meta == $key || (!$meta && !$count)) ? 'checked="checked"' : '';
-            echo '<label class="metaField_radio" style="display: block; padding: 2px 0;"><input class="metaField_radio" type="radio" name="'.$field['id'].'" value="'.$key.'" '.$checked.'> '.$label.'</label>';
+            echo '<label class="metaField_radio" style="display: block; padding: 2px 0;"><input class="metaField_radio" type="radio" name="' . $field['id'] . '" value="' . $key . '" ' . $checked . '> ' . $label . '</label>';
             $count++;
           }
 
-          echo '<p class="metaField_caption" style="color:#999">'.$field['desc'].'</p>',
+          echo '<p class="metaField_caption" style="color:#999">' . $field['desc'] . '</p>',
              '</div>';
 
         break;
@@ -205,7 +199,7 @@ class CMS_Blocks_Admin_Metaboxes {
 
     ?>
     <p class="description">
-      <label for="shortcode"><?php echo esc_html( __( "Copy this shortcode and paste it into your post, page, or text widget content:", 'cms-block' ) ); ?></label>
+      <label for="shortcode"><?php echo esc_html( __( 'Copy this shortcode and paste it into your post, page, or text widget content:' ) ); ?></label>
       <span class="shortcode wp-ui-highlight">
         <input type="text" id="shortcode" onfocus="this.select();" readonly="readonly" class="large-text code" value="<?php echo esc_attr( $shortcode ); ?>">
       </span>
