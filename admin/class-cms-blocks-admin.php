@@ -77,6 +77,25 @@ class CMS_Blocks_Admin {
   }
 
   /**
+   * Adds a help page link to a menu
+   *
+   * @link      https://codex.wordpress.org/Administration_Menus
+   * @since     1.0.0
+   * @return    void
+   */
+  public function add_menu() {
+
+    add_submenu_page(
+      'edit.php?post_type=cms_block',
+      apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'CMS Blocks Help' ) ),
+      apply_filters( $this->plugin_name . '-settings-menu-title', esc_html__( 'Help' ) ),
+      'manage_options',
+      $this->plugin_name . '-help',
+      array( $this, 'page_help' )
+    );
+  }
+
+  /**
    * Creates a new custom post type
    *
    * @since     1.0.0
@@ -155,6 +174,16 @@ class CMS_Blocks_Admin {
   public function add_cpt_columns() {
     add_filter( 'manage_edit-cms_block_columns', array( $this, 'cpt_cms_block_columns' ) );
     add_action( 'manage_cms_block_posts_custom_column', array( $this, 'column_shortcode' ), 10, 2 );
+  }
+
+  /**
+   * Creates the help page
+   *
+   * @since     1.0.0
+   * @return    void
+   */
+  public function page_help() {
+    include( plugin_dir_path( __FILE__ ) . 'partials/cms-blocks-admin-page-help.php' );
   }
 
 }

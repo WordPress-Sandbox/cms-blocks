@@ -146,7 +146,7 @@ class CMS_Blocks {
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'init', $plugin_admin, 'cpt_cms_block' );
     $this->loader->add_action( 'init', $plugin_admin, 'add_cpt_columns' );
-
+    $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
   }
 
