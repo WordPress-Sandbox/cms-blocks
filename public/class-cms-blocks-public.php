@@ -53,7 +53,7 @@ class CMS_Blocks_Public {
 
   }
 
-  public function get_cms_content( $args=array() ) {
+  public static function get_cms_content( $args=array() ) {
 
     $default = array(
       'id'          => false,
@@ -134,7 +134,7 @@ class CMS_Blocks_Public {
 
       $text = '<' . $tag . ' ' . $class . $style . '>' . $content . '</' . $tag . '><!-- cms-block id-' . $id . ' -->';
 
-      if ($showtitle) $title = '<'. $args->titletag . '>' . $page_data->post_title . '</'. $args->titletag .'>';
+      if ($showtitle) $title = '<'. $args->titletag . '>' . $title . '</'. $args->titletag .'>';
       if ($showtitle) $text = '<' . $tag . ' ' . $class . $style . '>'. $title . $content . '</' . $tag . '><!-- cms-block id-' . $id . ' -->';
 
       $content = $text;
