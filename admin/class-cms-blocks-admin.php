@@ -87,7 +87,7 @@ class CMS_Blocks_Admin {
 
     add_submenu_page(
       'edit.php?post_type=cms_block',
-      apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'CMS Blocks Help' ) ),
+      apply_filters( $this->plugin_name . '-settings-page-title', esc_html__( 'Blocks Help' ) ),
       apply_filters( $this->plugin_name . '-settings-menu-title', esc_html__( 'Help' ) ),
       'manage_options',
       $this->plugin_name . '-help',
@@ -107,19 +107,19 @@ class CMS_Blocks_Admin {
     register_post_type( strtolower( $cpt ),
       array(
         'labels' => array(
-          'name'                => __( 'CMS Blocks' ),
-          'singular_name'       => __( 'CMS Block' ),
+          'name'                => __( 'Blocks' ),
+          'singular_name'       => __( 'Block' ),
           'add_new'             => __( 'Add New' ),
-          'add_new_item'        => __( 'Add New CMS Block' ),
-          'edit_item'           => __( 'Edit CMS Block' ),
-          'new_item'            => __( 'New CMS Block' ),
-          'all_items'           => __( 'All CMS Blocks' ),
-          'view_item'           => __( 'View CMS Block' ),
+          'add_new_item'        => __( 'Add New Block' ),
+          'edit_item'           => __( 'Edit Block' ),
+          'new_item'            => __( 'New Block' ),
+          'all_items'           => __( 'All Blocks' ),
+          'view_item'           => __( 'View Block' ),
           'search_items'        => __( 'Search' ),
-          'not_found'           => __( 'No CMS Blocks found' ),
-          'not_found_in_trash'  => __( 'No CMS Blocks found in Trash' ),
+          'not_found'           => __( 'No Blocks found' ),
+          'not_found_in_trash'  => __( 'No Blocks found in Trash' ),
           'parent_item_colon'   => '',
-          'menu_name'           => 'CMS Blocks'
+          'menu_name'           => 'Blocks'
         ),
         'public'                => false,
         'exclude_from_search'   => true,

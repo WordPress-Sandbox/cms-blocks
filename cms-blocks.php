@@ -18,7 +18,7 @@
  * Description:       Static content blocks for your content.
  * Version:           1.0.0
  * Author:            Adam Richardson
- * Author URI:        https://github.com/adsic/
+ * Author URI:        https://github.com/adsric/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */

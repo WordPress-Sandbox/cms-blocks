@@ -34,10 +34,10 @@ class CMS_Block_Widget extends WP_Widget {
   function __construct() {
     $this->plugin_name    = 'cms-block';
 
-    $name                 = esc_html__( 'CMS Block' );
+    $name                 = esc_html__( 'Block' );
     $id                   = 'cms-block-widget';
     $opts['classname']    = 'cms-block';
-    $opts['description']  = esc_html__( 'Displays the content from a CMS Block.' );
+    $opts['description']  = esc_html__( 'Displays the content from a Block.' );
     $control              = array( 'width' => 300, 'height' => 350 );
 
     parent::__construct( $id, $name, $opts, $control );
@@ -85,7 +85,7 @@ class CMS_Block_Widget extends WP_Widget {
     $instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
     <p>
-      <label for="<?php echo esc_attr($this->get_field_id( 'cms_block_id' )); ?>"><?php _e( 'Block:' ); ?></label>
+      <label for="<?php echo esc_attr($this->get_field_id( 'cms_block_id' )); ?>"><?php _e( 'Render block:' ); ?></label>
       <select id="<?php echo esc_attr($this->get_field_id( 'cms_block_id' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'cms_block_id' )); ?>" style="width:100%;" >
       <?php
 
