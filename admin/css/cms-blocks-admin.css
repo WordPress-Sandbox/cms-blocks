@@ -4,22 +4,22 @@
  */
 
 span.shortcode {
-  display: block;
-  margin: 2px 0;
+    display: block;
+    margin: 2px 0;
 }
 
 span.shortcode > input {
-  background: inherit;
-  color: inherit;
-  font-size: 12px;
-  border: none;
-  box-shadow: none;
-  padding: 4px 8px;
-  margin: 0;
+    background: inherit;
+    color: inherit;
+    font-size: 12px;
+    border: none;
+    box-shadow: none;
+    padding: 4px 8px;
+    margin: 0;
 }
 
 #cms_block_title_metabox .hndle,
 #cms_block_title_metabox .handlediv {
-  display: none;
+    display: none;
 }
 

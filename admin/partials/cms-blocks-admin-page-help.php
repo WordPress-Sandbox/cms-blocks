@@ -30,11 +30,11 @@
 <h3><?php esc_html_e( 'Shortcode Attributes' ); ?></h3>
 <p><?php esc_html_e( 'There are currently five attributes that can be added to the shortcode to filter:' ); ?></p>
 <ol>
-  <li><?php esc_html_e( 'id' ); ?></li>
-  <li><?php esc_html_e( 'post_type' ); ?></li>
-  <li><?php esc_html_e( 'title' ); ?></li>
-  <li><?php esc_html_e( 'showtitle' ); ?></li>
-  <li><?php esc_html_e( 'titletag' ); ?></li>
+    <li><?php esc_html_e( 'id' ); ?></li>
+    <li><?php esc_html_e( 'post_type' ); ?></li>
+    <li><?php esc_html_e( 'title' ); ?></li>
+    <li><?php esc_html_e( 'showtitle' ); ?></li>
+    <li><?php esc_html_e( 'titletag' ); ?></li>
 </ol>
 
 <h4><?php esc_html_e( 'id' ); ?></h4>
@@ -49,8 +49,8 @@
 <p><?php esc_html_e( 'Setting this to "page" or "post" would query those post types instead of the cms blocks default type.' ); ?></p>
 <p><?php esc_html_e( 'Examples of the post_type attribute:' ); ?></p>
 <ul>
-  <li><?php esc_html_e( 'post_type="page" (query a page type)' ); ?></li>
-  <li><?php esc_html_e( 'post_type="post" (query a post type)' ); ?></li>
+    <li><?php esc_html_e( 'post_type="page" (query a page type)' ); ?></li>
+    <li><?php esc_html_e( 'post_type="post" (query a post type)' ); ?></li>
 </ul>
 
 <h4><?php esc_html_e( 'title' ); ?></h4>
@@ -65,8 +65,8 @@
 <p>By default is <code>h3</code>. This will specify the title element <code><span>&lt;h3&gt;</span>$title<span>&lt;/h3&gt;</span></code>.</p>
 <p><?php esc_html_e( 'Examples of the titletag attribute:' ); ?></p>
 <ul>
-  <li><?php esc_html_e( 'titletag="h2" (wrap the title in a h2 heading tag)' ); ?></li>
-  <li><?php esc_html_e( 'titletag="span" (wrap the title in a span tag)' ); ?></li>
+    <li><?php esc_html_e( 'titletag="h2" (wrap the title in a h2 heading tag)' ); ?></li>
+    <li><?php esc_html_e( 'titletag="span" (wrap the title in a span tag)' ); ?></li>
 </ul>
 
 <h3><?php esc_html_e( 'Templating' ); ?></h3>

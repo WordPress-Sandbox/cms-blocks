@@ -21,21 +21,21 @@
  */
 class CMS_Blocks_Activator {
 
-  /**
-   * Short Description. (use period)
-   *
-   * Long Description.
-   *
-   * @since    1.0.0
-   */
-  public static function activate() {
+    /**
+     * Short Description. (use period)
+     *
+     * Long Description.
+     *
+     * @since    1.0.0
+     */
+    public static function activate() {
 
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cms-blocks-admin.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cms-blocks-admin.php';
 
-    CMS_Blocks_Admin::cpt_cms_block();
+        CMS_Blocks_Admin::cpt_cms_block();
 
-    flush_rewrite_rules();
+        flush_rewrite_rules();
 
-  }
+    }
 
 }

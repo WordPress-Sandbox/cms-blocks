@@ -25,7 +25,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-  die;
+    die;
 }
 
 /**
@@ -33,8 +33,8 @@ if ( ! defined( 'WPINC' ) ) {
  * This action is documented in includes/class-cms-blocks-activator.php
  */
 function activate_cms_blocks() {
-  require_once plugin_dir_path( __FILE__ ) . 'includes/class-cms-blocks-activator.php';
-  CMS_Blocks_Activator::activate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-cms-blocks-activator.php';
+    CMS_Blocks_Activator::activate();
 }
 register_activation_hook( __FILE__, 'activate_cms_blocks' );
 
@@ -55,8 +55,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-cms-blocks.php';
  */
 function run_cms_blocks() {
 
-  $plugin = new CMS_Blocks();
-  $plugin->run();
+    $plugin = new CMS_Blocks();
+    $plugin->run();
 
 }
 run_cms_blocks();
